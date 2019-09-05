@@ -1,0 +1,98 @@
+﻿@model TrashCollector.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickupStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickupStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickupDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickupDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuspendPickupStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuspendPickupStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuspendPickupEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuspendPickupEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OneTimePickupDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OneTimePickupDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.areaCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.areaCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthlyBill)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthlyBill)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

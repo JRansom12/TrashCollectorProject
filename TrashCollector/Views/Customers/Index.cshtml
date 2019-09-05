@@ -1,0 +1,87 @@
+﻿@model IEnumerable<TrashCollector.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuspendPickupStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuspendPickupEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OneTimePickupDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.areaCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MonthlyBill)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickupStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickupDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuspendPickupStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuspendPickupEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OneTimePickupDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.areaCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MonthlyBill)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

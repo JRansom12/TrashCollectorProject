@@ -168,6 +168,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -176,6 +178,18 @@
     <Compile Include="Migrations\201909041836425_InitialMigration.cs" />
     <Compile Include="Migrations\201909041836425_InitialMigration.Designer.cs">
       <DependentUpon>201909041836425_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909041852283_SecondMigration.cs" />
+    <Compile Include="Migrations\201909041852283_SecondMigration.Designer.cs">
+      <DependentUpon>201909041852283_SecondMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909041938529_ThirdMigration.cs" />
+    <Compile Include="Migrations\201909041938529_ThirdMigration.Designer.cs">
+      <DependentUpon>201909041938529_ThirdMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909051836271_ForeignKeyMigration.cs" />
+    <Compile Include="Migrations\201909051836271_ForeignKeyMigration.Designer.cs">
+      <DependentUpon>201909051836271_ForeignKeyMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -242,6 +256,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -262,6 +286,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201909041836425_InitialMigration.resx">
       <DependentUpon>201909041836425_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909041852283_SecondMigration.resx">
+      <DependentUpon>201909041852283_SecondMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909041938529_ThirdMigration.resx">
+      <DependentUpon>201909041938529_ThirdMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909051836271_ForeignKeyMigration.resx">
+      <DependentUpon>201909051836271_ForeignKeyMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
