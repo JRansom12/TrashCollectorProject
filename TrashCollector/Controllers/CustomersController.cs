@@ -47,7 +47,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,PickupStatus,PickupDay,SuspendPickupStart,SuspendPickupEndDate,Address,OneTimePickupDay,areaCode,MonthlyBill")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,PickupStatus,PickupDay,SuspendPickupStart,SuspendPickupEndDate,Address,OneTimePickupDay,AreaCode,MonthlyBill")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,PickupStatus,PickupDay,SuspendPickupStart,SuspendPickupEndDate,Address,OneTimePickupDay,areaCode,MonthlyBill")] Customer customer)
+        public ActionResult Edit([Bind(Include = "FirstName,LastName,PickupStatus,PickupDay,SuspendPickupStart,SuspendPickupEndDate,Address,OneTimePickupDay,areaCode")] Customer customer)
         {
             if (ModelState.IsValid)
             {

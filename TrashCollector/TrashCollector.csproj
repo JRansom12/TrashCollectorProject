@@ -191,6 +191,10 @@
     <Compile Include="Migrations\201909051836271_ForeignKeyMigration.Designer.cs">
       <DependentUpon>201909051836271_ForeignKeyMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909052118411_AreaCodeMigration.cs" />
+    <Compile Include="Migrations\201909052118411_AreaCodeMigration.Designer.cs">
+      <DependentUpon>201909052118411_AreaCodeMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -266,6 +270,7 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Shared\_CustomerLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909051836271_ForeignKeyMigration.resx">
       <DependentUpon>201909051836271_ForeignKeyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909052118411_AreaCodeMigration.resx">
+      <DependentUpon>201909052118411_AreaCodeMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
