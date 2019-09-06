@@ -21,6 +21,13 @@ namespace TrashCollector.Controllers
             return View(db.Customers.ToList());
         }
 
+        public ActionResult DisplayBill()
+        {
+            var customerId = User.Identity.GetUserId();
+            var customer = db.Customers.Where(e => e.ApplicationId == customerId).Single();
+            return View(customer);
+        }
+
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {

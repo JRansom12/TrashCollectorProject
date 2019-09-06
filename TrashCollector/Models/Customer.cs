@@ -34,9 +34,12 @@ namespace TrashCollector.Models
         public int AreaCode { get; set; }
         [Display(Name = "Monthly Bill")]
         public double MonthlyBill { get; set; }
+        [Display(Name = "Pickup Confirmation")]
+        public bool PickupConfirmation { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+        public enum DayOfWeek { };
     }
 }

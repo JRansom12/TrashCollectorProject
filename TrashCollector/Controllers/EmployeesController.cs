@@ -16,11 +16,19 @@ namespace TrashCollector.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         //GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(string inputDate)
         {
-            //var employees = db.Employees.Include(e => e.Customer).ToList();
-            //return View(employees);
-            return View(db.Employees.ToList());
+            var employeeId = User.Identity.GetUserId();
+            var employee = db.Employees.Where(e => e.ApplicationId == employeeId).Single();
+            string dayOfWeek = DateTime.Now.DayOfWeek.ToString();
+            if (inputDate == null)
+            {
+                return View(db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == dayOfWeek).ToList());
+            }
+            else
+            {
+                return View(db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == inputDate || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == inputDate).ToList());
+            }
         }
 
         public ActionResult CustomerIndex()
@@ -28,7 +36,16 @@ namespace TrashCollector.Controllers
             var employeeId = User.Identity.GetUserId();
             var employee = db.Employees.Where(e => e.ApplicationId == employeeId).Single();
             string dayOfWeek = DateTime.Now.DayOfWeek.ToString();
-            var customers = db.Customers.Where(c => c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek);
+            var customers = db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == dayOfWeek);
+            return View(customers);
+        }
+
+        public ActionResult CustomerIndexFilter()
+        {
+            var employeeId = User.Identity.GetUserId();
+            var employee = db.Employees.Where(e => e.ApplicationId == employeeId).Single();
+            string dayOfWeek = "Monday";
+            var customers = db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == dayOfWeek);
             return View(customers);
         }
 
