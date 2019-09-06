@@ -158,7 +158,7 @@ namespace TrashCollector.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);    
-                    await this.UserManager.AddToRoleAsync(user.Id, model.Role /*model.UserRoles.ToString()*/);
+                    await this.UserManager.AddToRoleAsync(user.Id, model.Role);
                     if (model.Role == "Customer")
                     {
                         return RedirectToAction("Create", "Customers");
@@ -171,6 +171,7 @@ namespace TrashCollector.Controllers
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                           .ToList(), "Name", "Name");
+                //ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
                 AddErrors(result);
             }
             return View();

@@ -15,18 +15,20 @@ namespace TrashCollector.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Employees
-        //public ActionResult Index()
-        //{
-        //    var employees = db.Employees.Include(e => e.Customer).ToList();
-        //    return View(employees);
-        //}
+        //GET: Employees
+        public ActionResult Index()
+        {
+            //var employees = db.Employees.Include(e => e.Customer).ToList();
+            //return View(employees);
+            return View(db.Employees.ToList());
+        }
 
-        public ActionResult Index() //Call this CustomerIndex and build a View for it
+        public ActionResult CustomerIndex()
         {
             var employeeId = User.Identity.GetUserId();
             var employee = db.Employees.Where(e => e.ApplicationId == employeeId).Single();
-            var customers = db.Customers.Where(c => c.AreaCode == employee.AreaCode);
+            string dayOfWeek = DateTime.Now.DayOfWeek.ToString();
+            var customers = db.Customers.Where(c => c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek);
             return View(customers);
         }
 
