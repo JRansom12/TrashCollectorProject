@@ -21,6 +21,19 @@ namespace TrashCollector.Controllers
             var employeeId = User.Identity.GetUserId();
             var employee = db.Employees.Where(e => e.ApplicationId == employeeId).Single();
             string dayOfWeek = DateTime.Now.DayOfWeek.ToString();
+
+
+            //var customer = db.Customers.Where(c => c.ApplicationId == User.Identity.GetUserId()).Single();
+            //if(customer.SuspendPickupStart == DateTime.Now.ToString())
+            //{
+
+            //}
+            //var endCompare = 
+            //if startCompare(){
+            //    cusomter.PickupStatus = false;
+            //}
+
+
             if (inputDate == null)
             {
                 return View(db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == dayOfWeek).ToList());

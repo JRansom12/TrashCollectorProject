@@ -19,27 +19,33 @@ namespace TrashCollector.Controllers
         public ActionResult Index()
         {
             return View(db.Customers.ToList());
+            //var customerId = User.Identity.GetUserId();
+            //var customer = db.Customers.Where(e => e.ApplicationId == customerId);
+            //return View(customer);
         }
 
         public ActionResult DisplayBill()
         {
             var customerId = User.Identity.GetUserId();
-            var customer = db.Customers.Where(e => e.ApplicationId == customerId).Single();
+            var customer = db.Customers.Where(e => e.ApplicationId == customerId);
             return View(customer);
         }
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Customer customer = db.Customers.Find(id);
+            //if (customer == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(customer);
+            var customerId = User.Identity.GetUserId();
+            Customer customer = db.Customers.Where(e => e.ApplicationId == customerId).Single();
             return View(customer);
         }
 
@@ -54,7 +60,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,PickupStatus,PickupDay,SuspendPickupStart,SuspendPickupEndDate,Address,OneTimePickupDay,AreaCode,MonthlyBill")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,PickupStatus,PickupDay,SuspendPickupStart,SuspendPickupEndDate,Address,OneTimePickupDay,AreaCode,MonthlyBill,ApplicationId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -68,17 +74,20 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customers/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(/*int? id*/)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Customer customer = db.Customers.Find(id);
+            //if (customer == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(customer);
+            var customerId = User.Identity.GetUserId();
+            Customer customer = db.Customers.Where(e => e.ApplicationId == customerId).Single();
             return View(customer);
         }
 
@@ -87,7 +96,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FirstName,LastName,PickupStatus,PickupDay,SuspendPickupStart,SuspendPickupEndDate,Address,OneTimePickupDay,AreaCode")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,PickupStatus,PickupDay,SuspendPickupStart,SuspendPickupEndDate,Address,OneTimePickupDay,AreaCode,MonthlyBill")] Customer customer)
         {
             if (ModelState.IsValid)
             {

@@ -81,7 +81,14 @@ namespace TrashCollector.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    if (User.IsInRole("Customer"))
+                    {
+                        return RedirectToAction("Details, Customer");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index, Customer");
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -174,8 +181,8 @@ namespace TrashCollector.Controllers
                 //ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
                 AddErrors(result);
             }
-            return View();
-            //return View(model);
+            //return View();
+            return View(model);
         }
 
         // GET: /Account/ConfirmEmail
