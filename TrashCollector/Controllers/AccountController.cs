@@ -87,7 +87,7 @@ namespace TrashCollector.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index, Customer");
+                        return RedirectToAction("Details, Employee");
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -176,9 +176,9 @@ namespace TrashCollector.Controllers
                     }
                     return RedirectToAction("Index", "Users");
                 }
-                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
-                                          .ToList(), "Name", "Name");
-                //ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
+                //ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                //                          .ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
                 AddErrors(result);
             }
             //return View();

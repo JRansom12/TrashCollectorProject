@@ -21,45 +21,42 @@ namespace TrashCollector.Controllers
             var employeeId = User.Identity.GetUserId();
             var employee = db.Employees.Where(e => e.ApplicationId == employeeId).Single();
             string dayOfWeek = DateTime.Now.DayOfWeek.ToString();
-
-
-            //var customer = db.Customers.Where(c => c.ApplicationId == User.Identity.GetUserId()).Single();
-            //if(customer.SuspendPickupStart == DateTime.Now.ToString())
-            //{
-
-            //}
-            //var endCompare = 
-            //if startCompare(){
-            //    cusomter.PickupStatus = false;
-            //}
-
-
+            var todayDate = DateTime.Today;
+            List<Customer> customerList = new List<Customer>();
+            foreach(var customer in db.Customers)
+            {
+                if(customer.SuspendPickupStart == null)
+                {
+                    customerList.Add(customer);
+                }
+                else
+                {
+                    var startDate = DateTime.Parse(customer.SuspendPickupStart);
+                    var endDate = DateTime.Parse(customer.SuspendPickupEndDate);
+                    if(todayDate == startDate)
+                    {
+                        customer.PickupStatus = false;
+                    }
+                    else if(todayDate > endDate)
+                    {
+                        customer.PickupStatus = true;
+                        customer.SuspendPickupStart = null;
+                        customer.SuspendPickupEndDate = null;
+                    }
+                    else
+                    {
+                        customerList.Add(customer);
+                    }
+                }
+            }
             if (inputDate == null)
             {
-                return View(db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == dayOfWeek).ToList());
+                return View(customerList.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == dayOfWeek).ToList());
             }
             else
             {
-                return View(db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == inputDate || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == inputDate).ToList());
+                return View(customerList.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == inputDate || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == inputDate).ToList());
             }
-        }
-
-        public ActionResult CustomerIndex()
-        {
-            var employeeId = User.Identity.GetUserId();
-            var employee = db.Employees.Where(e => e.ApplicationId == employeeId).Single();
-            string dayOfWeek = DateTime.Now.DayOfWeek.ToString();
-            var customers = db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == dayOfWeek);
-            return View(customers);
-        }
-
-        public ActionResult CustomerIndexFilter()
-        {
-            var employeeId = User.Identity.GetUserId();
-            var employee = db.Employees.Where(e => e.ApplicationId == employeeId).Single();
-            string dayOfWeek = "Monday";
-            var customers = db.Customers.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == dayOfWeek || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == dayOfWeek);
-            return View(customers);
         }
 
         // GET: Employees/Details/5
@@ -75,6 +72,9 @@ namespace TrashCollector.Controllers
                 return HttpNotFound();
             }
             return View(employee);
+            //var customerId = User.Identity.GetUserId();
+            //Customer customer = db.Customers.Where(e => e.ApplicationId == customerId).Single();
+            //return View(customer);
         }
 
         // GET: Employees/Create
@@ -88,7 +88,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,AreaCode")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,AreaCode,ApplicationId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -114,6 +114,9 @@ namespace TrashCollector.Controllers
                 return HttpNotFound();
             }
             return View(employee);
+            //var customerId = User.Identity.GetUserId();
+            //Customer customer = db.Customers.Where(e => e.ApplicationId == customerId).Single();
+            //return View(customer);
         }
 
         // POST: Employees/Edit/5
@@ -121,7 +124,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,AreaCode")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,AreaCode,ApplicationId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
