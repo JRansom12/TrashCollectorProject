@@ -14,7 +14,12 @@ namespace TrashCollector.Controllers
     public class EmployeesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        public double pickupPrice;
 
+        public EmployeesController()
+        {
+            pickupPrice = 5;
+        }
         //GET: Employees
         public ActionResult Index(string inputDate)
         {
@@ -57,6 +62,21 @@ namespace TrashCollector.Controllers
             {
                 return View(customerList.Where(c => c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.PickupDay == inputDate || c.PickupStatus == true && c.AreaCode == employee.AreaCode && c.OneTimePickupDay == inputDate).ToList());
             }
+        }
+        public ActionResult PickupConfirmation(int id)
+        {
+            var currentCustomer = db.Customers.Where(c => c.Id == id).Single();
+            currentCustomer.PickupConfirmation = true;
+            currentCustomer.MonthlyBill += pickupPrice;
+            db.SaveChanges();
+            //return RedirectToAction("Index","Employees");
+            return View("PickupConfirmation");
+        }
+        public ActionResult GoogleMap(int id)
+        {
+            var currentCustomer = db.Customers.Where(c => c.Id == id).Single();
+            var address = currentCustomer.Address;
+            return View(address, "GoogleMap");
         }
 
         // GET: Employees/Details/5

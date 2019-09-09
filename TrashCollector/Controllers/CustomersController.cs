@@ -30,6 +30,10 @@ namespace TrashCollector.Controllers
             var customer = db.Customers.Where(e => e.ApplicationId == customerId);
             return View(customer);
         }
+        public ActionResult PayBill()
+        {
+            throw new NotImplementedException();
+        }
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
