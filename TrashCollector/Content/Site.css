@@ -1,11 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url(https://previews.123rf.com/images/anisimovfedor/anisimovfedor1605/anisimovfedor160500007/56734213-garbage-collection-garbage-truck-and-garbage-men-isolated-on-white-background-waste-disposal-waste-m.jpg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    background-color: forestgreen;
+    background-image: none;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,26 +22,4 @@ input,
 select,
 textarea {
     max-width: 280px;
-}
-#bg {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-}
-
-    #bg img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        min-width: 50%;
-        min-height: 50%;
-    }
-
-li {
-    text-decoration: underline;
 }

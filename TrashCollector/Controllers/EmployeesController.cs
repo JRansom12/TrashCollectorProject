@@ -69,14 +69,8 @@ namespace TrashCollector.Controllers
             currentCustomer.PickupConfirmation = true;
             currentCustomer.MonthlyBill += pickupPrice;
             db.SaveChanges();
-            //return RedirectToAction("Index","Employees");
-            return View("PickupConfirmation");
-        }
-        public ActionResult GoogleMap(int id)
-        {
-            var currentCustomer = db.Customers.Where(c => c.Id == id).Single();
-            var address = currentCustomer.Address;
-            return View(address, "GoogleMap");
+            return RedirectToAction("Index", "Employees");
+            //return View("PickupConfirmation");
         }
 
         // GET: Employees/Details/5

@@ -83,11 +83,11 @@ namespace TrashCollector.Controllers
                 case SignInStatus.Success:
                     if (User.IsInRole("Customer"))
                     {
-                        return RedirectToAction("Details, Customer");
+                        return RedirectToAction("Index", "Customers");
                     }
                     else
                     {
-                        return RedirectToAction("Details, Employee");
+                        return RedirectToAction("Index", "Home");
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -176,12 +176,9 @@ namespace TrashCollector.Controllers
                     }
                     return RedirectToAction("Index", "Users");
                 }
-                //ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
-                //                          .ToList(), "Name", "Name");
                 ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
                 AddErrors(result);
             }
-            //return View();
             return View(model);
         }
 

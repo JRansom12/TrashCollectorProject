@@ -41,39 +41,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PickupStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PickupDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SuspendPickupStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SuspendPickupEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OneTimePickupDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AreaCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MonthlyBill)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickupStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickupDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuspendPickupStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuspendPickupEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneTimePickupDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreaCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthlyBill)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>
+        </tr>
+            }
 
-</table>
+        </table>

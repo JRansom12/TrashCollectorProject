@@ -18,10 +18,10 @@ namespace TrashCollector.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
-            //var customerId = User.Identity.GetUserId();
-            //var customer = db.Customers.Where(e => e.ApplicationId == customerId);
-            //return View(customer);
+            //return View(db.Customers.ToList());
+            var customerId = User.Identity.GetUserId();
+            var customer = db.Customers.Where(e => e.ApplicationId == customerId);
+            return View(customer);
         }
 
         public ActionResult DisplayBill()
@@ -29,10 +29,6 @@ namespace TrashCollector.Controllers
             var customerId = User.Identity.GetUserId();
             var customer = db.Customers.Where(e => e.ApplicationId == customerId);
             return View(customer);
-        }
-        public ActionResult PayBill()
-        {
-            throw new NotImplementedException();
         }
 
         // GET: Customers/Details/5
@@ -71,7 +67,7 @@ namespace TrashCollector.Controllers
                 customer.ApplicationId = User.Identity.GetUserId();
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Customers");
             }
 
             return View(customer);
